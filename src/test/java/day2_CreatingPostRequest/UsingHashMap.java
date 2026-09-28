@@ -1,45 +1,61 @@
 package day2_CreatingPostRequest;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.testng.annotations.Test;
 
+import io.restassured.response.Response;
+
 public class UsingHashMap {
+	
+	Response response;
+	String id;
 
 	@Test
 	public void testPOSTusingHashMap() {
 
-		Map data = new HashMap<>();
+		Map<String, Object> data = new HashMap<>();
+
 		data.put("fullName", "God");
-		data.put("age", "15");
-		data.put("class", "10");
-		String gradeValues[] = { "99", "99", "99" };
+		data.put("age", 15);
+		data.put("standard", "10");
+
+		int gradeValues[] = { 99,99,99};
 		data.put("grades", gradeValues);
+
 		String subjectValues[] = { "Math", "History", "Biology" };
 		data.put("subjects", subjectValues);
-		
-		
-		given()
-			.contentType("application/json").body(data)
-		.when()
-			.post("http://localhost:3000/students")
-		.then()
-			.statusCode(201).log().all();
 
-	}
-	
-	@Test	
-	public void getStudentDetails() {
+		response=given().contentType("application/json").body(data)
+		.when().post("http://localhost:3000/students");
 		
+		id=response.jsonPath().getString("id");
+		
+		response.then().statusCode(201)
+		.body("fullName", equalTo("God"))
+		.body("age", equalTo(15))
+		.body("standard", equalTo("10"))
+		.body("grades[0]", equalTo(99))
+		.body("grades[1]", equalTo(99))
+		.body("grades[2]", equalTo(99))
+		.body("subjects[0]", equalTo("Math"))
+		.body("subjects[1]", equalTo("History"))
+		.body("subjects[2]", equalTo("Biology"))
+		.header("Content-Type", "application/json")
+		.log().all();
+	}
+
+	@Test(dependsOnMethods = "testPOSTusingHashMap")
+	public void deteleStudentDetails() {
+
 		given()
-		.when()
-			.get("http://localhost:3000/students/77OwQ_A_qv4")
-		.then()
-			.statusCode(200).log().all();
-			
+		.when().delete("http://localhost:3000/students/"+id)
+		.then().statusCode(200).log().all();
+
 	}
 
 }
