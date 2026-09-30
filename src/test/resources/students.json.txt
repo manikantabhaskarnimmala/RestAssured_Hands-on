@@ -1,0 +1,53 @@
+{
+  "students": [
+    {
+      "id": "1",
+      "fullName": "Aarav Sharma",
+      "age": 15,
+      "standard": "10",
+      "grades": [
+        85,
+        90,
+        78
+      ],
+      "subjects": [
+        "Math",
+        "History",
+        "Biology"
+      ]
+    },
+    {
+      "id": "2",
+      "fullName": "Ishita Verma",
+      "age": 14,
+      "standard": "9",
+      "grades": [
+        92,
+        88,
+        95
+      ],
+      "subjects": [
+        "Math",
+        "History",
+        "Biology"
+      ]
+    },
+    {
+      "id": "3",
+      "fullName": "Rohan Patel",
+      "age": 16,
+      "standard": "11",
+      "grades": [
+        76,
+        84,
+        80
+      ],
+      "subjects": [
+        "Math",
+        "History",
+        "Biology"
+      ]
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

@@ -1,0 +1,46 @@
+{
+  "store": {
+    "books": [
+      {
+        "id": 1,
+        "author": "George Orwell",
+        "category": "Fiction",
+        "isbn": "9780451524935",
+        "price": 12.99,
+        "title": "1984"
+      },
+      {
+        "id": 2,
+        "author": "J.K. Rowling",
+        "category": "Fantasy",
+        "isbn": "9780747532743",
+        "price": 15.99,
+        "title": "Harry Potter and the Philosopher's Stone"
+      },
+      {
+        "id": 3,
+        "author": "Dan Brown",
+        "category": "Thriller",
+        "isbn": "9780307474278",
+        "price": 18.50,
+        "title": "The Da Vinci Code"
+      },
+      {
+        "id": 4,
+        "author": "Stephen King",
+        "category": "Horror",
+        "isbn": "9781501142970",
+        "price": 14.75,
+        "title": "It"
+      },
+      {
+        "id": 5,
+        "author": "Yuval Noah Harari",
+        "category": "History",
+        "isbn": "9780062316097",
+        "price": 21.99,
+        "title": "Sapiens"
+      }
+    ]
+  }
+}
