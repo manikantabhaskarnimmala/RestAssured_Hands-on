@@ -19,7 +19,7 @@ public class ParsingJSONResponseData {
 	@Test
 	public void dataParsingTest() {
 		//Path of the JSON file and invoked using json-server of npm.
-		//approach1
+		//approach1 : When Data is static
 		given()
 			.contentType("application/json")
 		.when()
@@ -52,7 +52,7 @@ public class ParsingJSONResponseData {
 				.when().get("http://localhost:3000/store");
 		
 		//JSONObject
-		JSONObject jo = new JSONObject(response.asString()); 
+		JSONObject jo = new JSONObject(response.body().asString()); 
 		//Here we are converting response to JSONObject type using asString() and passed as a parameter into it.
 		
 		JSONArray books = jo.getJSONArray("books");
@@ -62,10 +62,28 @@ public class ParsingJSONResponseData {
 	        String title = book.getString("title");
 	        System.out.println(title);
 	    }
-		
-		
-
-		
+	    
+	    //find the specific value is there in the JSON 
+	    boolean status=false;
+	    for(int i = 0; i < books.length(); i++) {
+	    	String title = books.getJSONObject(i).getString("title");	    	
+	    	if(title.equals("Harry Potter and the Philosopher's Stone")) {
+	    		System.out.println(title);
+	    		status=true;
+	    		break;
+	    	}
+	    }
+	    
+	    Assert.assertEquals(status, true, "Item is not found");
+	    
+	    //find the no. of books in the response
+	    int booksCount=0;
+	    for(int i =0;i< books.length();i++) {
+	    	booksCount++;	        
+	    }
+	    
+	    System.out.println("Total Books Count is: "+ booksCount);
+	    Assert.assertEquals(booksCount, 5, "Books count is not matching");
 	}
 	
 	

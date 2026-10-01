@@ -5,6 +5,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.testng.annotations.Test;
 
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
 public class UsingPOJO {
@@ -24,7 +25,7 @@ public class UsingPOJO {
 		data.setGrades(gradeValues);
 		data.setSubjects(subjectValues);
 		 response=given()
-				.contentType("application/json").body(data)
+				.contentType(ContentType.JSON).body(data)
 				.when()
 					.post("http://localhost:3000/students");
 		
